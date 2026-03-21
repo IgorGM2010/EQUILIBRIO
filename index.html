@@ -1,0 +1,1076 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EQUILÍBRIO - A Saúde Mental na Vida de um Estudante</title>
+  <style>
+    :root {
+      --bg: #DCF0F2;
+      --surface: #FFFFFF;
+      --title: #1D9E75;
+      --primary: #C9A0D0;
+      --text: #333333;
+      --text-muted: #666666;
+
+      --pensamento: #534AB7;
+      --emocao: #993556;
+      --comportamento: #0F6E56;
+      --saude: #854F0B;
+
+      --pensamento-bg: #EEEDFE;
+      --pensamento-text: #3C3489;
+      --emocao-bg: #F7E8EE;
+      --emocao-text: #7A2946;
+      --comportamento-bg: #E3F3EE;
+      --comportamento-text: #0B5C48;
+      --saude-bg: #F6EBDD;
+      --saude-text: #6D3F08;
+
+      --adapt-bg: #E1F5EE;
+      --adapt-border: #1D9E75;
+      --adapt-text: #085041;
+
+      --partial-bg: #FAEEDA;
+      --partial-border: #BA7517;
+      --partial-text: #412402;
+
+      --des-bg: #FCEBEB;
+      --des-border: #A32D2D;
+      --des-text: #501313;
+
+      --radius-pill: 50px;
+      --tr: 300ms ease;
+      --shadow-soft: 0 4px 32px rgba(0, 0, 0, 0.07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .app {
+      position: relative;
+      min-height: 100vh;
+      background: var(--bg);
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transition: opacity var(--tr), visibility var(--tr), transform var(--tr);
+    }
+
+    .screen.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: translateY(8px);
+    }
+
+    .screen-start {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .start-card {
+      width: 100%;
+      max-width: 360px;
+      background: var(--surface);
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .start-title {
+      margin: 0 0 1.5rem;
+      text-align: center;
+      font-size: clamp(2.2rem, 9vw, 42px);
+      line-height: 1.05;
+      font-weight: 800;
+      color: var(--title);
+      letter-spacing: 0.01em;
+    }
+
+    .btn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      transition: background-color var(--tr), border-color var(--tr), color var(--tr), opacity var(--tr), transform var(--tr);
+      font-family: inherit;
+    }
+
+    .btn:focus-visible {
+      box-shadow: 0 0 0 3px rgba(29, 158, 117, 0.2);
+    }
+
+    .btn-start {
+      width: 100%;
+      border-radius: var(--radius-pill);
+      background: var(--primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 16px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+    }
+
+    .btn-start:hover {
+      transform: translateY(-1px);
+    }
+
+    .screen-game {
+      overflow-y: auto;
+      padding: 1.5rem;
+    }
+
+    .game-shell {
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding-bottom: 1rem;
+    }
+
+    .progress-meta {
+      text-align: right;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background: #CCCCCC;
+      overflow: hidden;
+      margin-bottom: 0.8rem;
+    }
+
+    .progress-fill {
+      width: 0;
+      height: 100%;
+      background: var(--title);
+      border-radius: 2px;
+      transition: width var(--tr);
+    }
+
+    .active-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      min-height: 28px;
+      margin-bottom: 0.9rem;
+    }
+
+    .indicator-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex: 0 0 auto;
+    }
+
+    .card {
+      background: var(--surface);
+      border-radius: 16px;
+      border: 2.5px solid var(--pensamento);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      transition: border-color var(--tr);
+    }
+
+    .card-tag {
+      border-bottom: 0.5px solid #EEEEEE;
+      padding: 12px 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-radius: 0 0 12px 0;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .card-body {
+      padding: 15px 16px 16px;
+    }
+
+    .field-label {
+      margin: 0 0 0.5rem;
+      font-size: 11px;
+      color: #999999;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    .situation-text {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+    }
+
+    .context-label {
+      margin: 10px 0 0;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: #999999;
+      font-weight: 600;
+    }
+
+    .microfeedback {
+      margin-top: 14px;
+      border-left: 3px solid transparent;
+      border-radius: 10px;
+      padding: 10px 11px;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity var(--tr), max-height var(--tr), padding var(--tr);
+    }
+
+    .microfeedback.show {
+      opacity: 1;
+      max-height: 240px;
+      padding: 10px 11px;
+    }
+
+    .microfeedback-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-radius: 16px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 0.45rem;
+    }
+
+    .microfeedback-text {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      background: #FFFFFF;
+      border: 0.5px solid #CCCCCC;
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text);
+      cursor: pointer;
+      transition: background-color var(--tr), border-color var(--tr), color var(--tr), opacity var(--tr), transform var(--tr);
+    }
+
+    .option-btn:hover {
+      background: #F5F5F5;
+    }
+
+    .option-btn.is-dimmed {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    .next-btn {
+      width: 100%;
+      margin-top: 0.95rem;
+      background: var(--title);
+      color: #FFFFFF;
+      font-weight: 700;
+      border-radius: var(--radius-pill);
+      padding: 13px 16px;
+      font-size: 15px;
+      opacity: 0;
+      transform: translateY(6px);
+      pointer-events: none;
+      transition: opacity var(--tr), transform var(--tr);
+    }
+
+    .next-btn.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .summary {
+      background: #FFFFFF;
+      border-radius: 16px;
+      box-shadow: var(--shadow-soft);
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .summary h2 {
+      margin: 0 0 0.65rem;
+      font-size: 1.1rem;
+      color: var(--title);
+    }
+
+    .summary p {
+      margin: 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .score-list {
+      list-style: none;
+      margin: 0.8rem 0 0;
+      padding: 0;
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .score-item {
+      background: #F7FBFB;
+      border: 1px solid #E6EFF0;
+      border-radius: 10px;
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+    }
+
+    .summary-actions {
+      margin-top: 0.9rem;
+    }
+
+    .btn-restart {
+      width: 100%;
+      border-radius: var(--radius-pill);
+      padding: 12px;
+      background: var(--primary);
+      color: #FFFFFF;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    @media (max-width: 430px) {
+      .screen-game {
+        padding: 1rem;
+      }
+
+      .card-body {
+        padding: 14px;
+      }
+
+      .option-btn {
+        padding: 13px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <section id="startScreen" class="screen screen-start">
+      <div class="start-card">
+        <h1 class="start-title">EQUILÍBRIO</h1>
+        <button id="startBtn" class="btn btn-start" type="button" aria-label="Iniciar avaliação">
+          <span aria-hidden="true">▶</span>
+          <span>Iniciar Avaliação</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="gameScreen" class="screen screen-game is-hidden" aria-live="polite">
+      <main class="game-shell">
+        <div class="progress-meta" id="progressText">Carta 1 de 12</div>
+        <div class="progress-track" aria-hidden="true">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+
+        <div id="activePills" class="active-pills"></div>
+
+        <article id="card" class="card">
+          <div id="cardTag" class="card-tag">
+            <span id="tagDot" class="dot" aria-hidden="true"></span>
+            <span>SITUAÇÃO DO DIA A DIA</span>
+          </div>
+          <div class="card-body">
+            <p class="field-label">O que aconteceu?</p>
+            <p id="situationText" class="situation-text"></p>
+            <p id="contextText" class="context-label"></p>
+
+            <div id="microfeedback" class="microfeedback" role="status" aria-live="polite">
+              <div id="feedbackBadge" class="microfeedback-badge">
+                <span id="feedbackDot" class="dot" aria-hidden="true"></span>
+                <span id="feedbackTypeLabel"></span>
+              </div>
+              <p id="feedbackText" class="microfeedback-text"></p>
+            </div>
+          </div>
+        </article>
+
+        <div id="options" class="options"></div>
+
+        <button id="nextBtn" class="btn next-btn" type="button">Próxima carta →</button>
+
+        <section id="summary" class="summary" hidden>
+          <h2>Avaliação concluída</h2>
+          <p>Veja como cada indicador acumulou pontos ao longo das cartas.</p>
+          <ul id="scoreList" class="score-list"></ul>
+          <div class="summary-actions">
+            <button id="restartBtn" class="btn btn-restart" type="button">Jogar novamente</button>
+          </div>
+        </section>
+      </main>
+    </section>
+  </div>
+
+  <script>
+    const INDICATOR_STYLE = {
+      "Pensamento": {
+        color: "#534AB7",
+        pillBg: "#EEEDFE",
+        pillText: "#3C3489"
+      },
+      "Emoção": {
+        color: "#993556",
+        pillBg: "#F7E8EE",
+        pillText: "#7A2946"
+      },
+      "Comportamento": {
+        color: "#0F6E56",
+        pillBg: "#E3F3EE",
+        pillText: "#0B5C48"
+      },
+      "Saúde física": {
+        color: "#854F0B",
+        pillBg: "#F6EBDD",
+        pillText: "#6D3F08"
+      }
+    };
+
+    const RESPONSE_STYLE = {
+      adaptativo: {
+        bg: "#E1F5EE",
+        border: "#1D9E75",
+        text: "#085041",
+        label: "Resposta adaptativa"
+      },
+      parcial: {
+        bg: "#FAEEDA",
+        border: "#BA7517",
+        text: "#412402",
+        label: "Resposta parcialmente adaptativa"
+      },
+      desadaptativo: {
+        bg: "#FCEBEB",
+        border: "#A32D2D",
+        text: "#501313",
+        label: "Resposta desadaptativa"
+      }
+    };
+
+    const cartas = [
+
+      // ─── PENSAMENTO ───
+
+      {
+        indicadores: ["Pensamento"],
+        contexto: "ESCOLA",
+        situacao: "Você tirou uma nota baixa numa prova que estudou bastante. Ao ver o resultado, seu primeiro pensamento foi: \"Sou burro mesmo, não adianta tentar.\"",
+        opcoes: [
+          {
+            texto: "Essa nota não define minha capacidade. Vou entender onde errei e me preparar melhor.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Pensamentos como \"sou burro\" são chamados de distorções cognitivas. Eles parecem verdadeiros, mas são generalizações que ignoram seu esforço e sua capacidade real de aprender."
+          },
+          {
+            texto: "Realmente não tenho jeito pra isso. Vou desistir de tentar nessa matéria.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Pensamentos como \"sou burro\" são chamados de distorções cognitivas. Eles parecem verdadeiros, mas são generalizações que ignoram seu esforço e sua capacidade real de aprender."
+          },
+          {
+            texto: "Tudo bem, foi só essa prova. Mas continuei achando que não sou bom o suficiente.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Pensamentos como \"sou burro\" são chamados de distorções cognitivas. Eles parecem verdadeiros, mas são generalizações que ignoram seu esforço e sua capacidade real de aprender."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Pensamento"],
+        contexto: "CASA",
+        situacao: "Você está tentando estudar, mas fica se comparando com um colega que parece entender tudo com facilidade. Você começa a pensar que nunca vai chegar ao nível dele.",
+        opcoes: [
+          {
+            texto: "Cada um tem seu ritmo. O que importa é o meu progresso, não o dele.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Comparações constantes alimentam a insegurança. Na maioria das vezes, você só vê o resultado do outro — não o esforço, as dúvidas e os erros que ele também tem."
+          },
+          {
+            texto: "Não adianta, ele sempre vai ser melhor do que eu. Nem vou me esforçar.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Comparações constantes alimentam a insegurança. Na maioria das vezes, você só vê o resultado do outro — não o esforço, as dúvidas e os erros que ele também tem."
+          },
+          {
+            texto: "Vou tentar estudar mais, mas no fundo acho que ele é simplesmente mais inteligente.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Comparações constantes alimentam a insegurança. Na maioria das vezes, você só vê o resultado do outro — não o esforço, as dúvidas e os erros que ele também tem."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Pensamento"],
+        contexto: "ESCOLA",
+        situacao: "Você vai apresentar um trabalho para a turma e, antes de começar, pensa: \"Vou travar, todo mundo vai rir de mim e achar que sou ridículo.\"",
+        opcoes: [
+          {
+            texto: "Posso ficar nervoso, mas me preparei. Vou focar no conteúdo, não no julgamento dos outros.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Antecipar catástrofes é um padrão de pensamento muito comum em situações de exposição. O problema é que essa \"previsão\" aumenta a ansiedade e muitas vezes não se confirma na realidade."
+          },
+          {
+            texto: "Melhor fingir que estou doente e não apresentar. Não aguento essa situação.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Antecipar catástrofes é um padrão de pensamento muito comum em situações de exposição. O problema é que essa \"previsão\" aumenta a ansiedade e muitas vezes não se confirma na realidade."
+          },
+          {
+            texto: "Vou apresentar, mas já estou convicto de que vai ser um fracasso.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Antecipar catástrofes é um padrão de pensamento muito comum em situações de exposição. O problema é que essa \"previsão\" aumenta a ansiedade e muitas vezes não se confirma na realidade."
+          }
+        ]
+      },
+
+      // ─── EMOÇÃO ───
+
+      {
+        indicadores: ["Emoção"],
+        contexto: "ESCOLA",
+        situacao: "Na véspera de uma prova importante, você sente uma ansiedade tão grande que não consegue dormir nem se concentrar. Seu coração acelera só de pensar no dia seguinte.",
+        opcoes: [
+          {
+            texto: "Estou ansioso porque me importo. Vou respirar fundo, revisar o que consigo e descansar.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "A ansiedade antes de provas é normal e até útil em doses pequenas. O problema é quando ela paralisa. Reconhecer o que sente e agir com calma é muito mais eficaz do que fugir ou se exaurir."
+          },
+          {
+            texto: "Se estou assim, é porque não estou preparado. Vou estudar a noite toda sem parar.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "A ansiedade antes de provas é normal e até útil em doses pequenas. O problema é quando ela paralisa. Reconhecer o que sente e agir com calma é muito mais eficaz do que fugir ou se exaurir."
+          },
+          {
+            texto: "Vou tentar me distrair com o celular pra não pensar nisso.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "A ansiedade antes de provas é normal e até útil em doses pequenas. O problema é quando ela paralisa. Reconhecer o que sente e agir com calma é muito mais eficaz do que fugir ou se exaurir."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Emoção"],
+        contexto: "CASA",
+        situacao: "Você brigou com seu melhor amigo e ficou remoendo a situação o dia inteiro. Mesmo tentando fazer outras coisas, o pensamento volta sem parar.",
+        opcoes: [
+          {
+            texto: "Estou magoado e tudo bem sentir isso. Quando me acalmar, vou conversar com ele.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Ruminar sobre conflitos mantém a emoção negativa ativa por mais tempo. Nomear o que você sente e buscar uma resolução no momento certo ajuda a processar a situação de forma saudável."
+          },
+          {
+            texto: "Não vou falar nada. Se ele quiser resolver, que venha falar comigo.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Ruminar sobre conflitos mantém a emoção negativa ativa por mais tempo. Nomear o que você sente e buscar uma resolução no momento certo ajuda a processar a situação de forma saudável."
+          },
+          {
+            texto: "Vou fingir que estou bem, mas por dentro continuo remoendo.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Ruminar sobre conflitos mantém a emoção negativa ativa por mais tempo. Nomear o que você sente e buscar uma resolução no momento certo ajuda a processar a situação de forma saudável."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Emoção", "Comportamento"],
+        contexto: "SOCIAL",
+        situacao: "Você está numa festa com amigos, mas se sente estranho, fora do lugar e com vontade de ir embora. Parece que todo mundo está se divertindo menos você.",
+        opcoes: [
+          {
+            texto: "Estou me sentindo assim agora, mas não precisa ser sempre assim. Vou tentar me envolver um pouco antes de decidir ir embora.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Evitar sistematicamente essas situações reforça a crença de que você não consegue lidar com elas — e o isolamento aumenta com o tempo."
+          },
+          {
+            texto: "Saio sem falar nada, sumo e fico no celular em casa. Não sou feito pra essas coisas.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Evitar sistematicamente essas situações reforça a crença de que você não consegue lidar com elas — e o isolamento aumenta com o tempo."
+          },
+          {
+            texto: "Fico mais um pouco, mas no celular o tempo todo pra não ter que interagir.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Evitar sistematicamente essas situações reforça a crença de que você não consegue lidar com elas — e o isolamento aumenta com o tempo."
+          }
+        ]
+      },
+
+      // ─── COMPORTAMENTO ───
+
+      {
+        indicadores: ["Comportamento"],
+        contexto: "CASA",
+        situacao: "Você tem uma lista enorme de tarefas para o fim de semana, mas fica procrastinando assistindo séries. Chega domingo à noite e quase nada foi feito.",
+        opcoes: [
+          {
+            texto: "Vou dividir as tarefas em pequenos blocos e começar pela mais fácil agora.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "A procrastinação costuma ser uma resposta à ansiedade, não à preguiça. Dividir tarefas em partes menores reduz a sensação de sobrecarga e torna mais fácil começar."
+          },
+          {
+            texto: "Deixa pra semana que vem. Já era esse fim de semana mesmo.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "A procrastinação costuma ser uma resposta à ansiedade, não à preguiça. Dividir tarefas em partes menores reduz a sensação de sobrecarga e torna mais fácil começar."
+          },
+          {
+            texto: "Faço tudo correndo agora de madrugada, mal feito mas entregue.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "A procrastinação costuma ser uma resposta à ansiedade, não à preguiça. Dividir tarefas em partes menores reduz a sensação de sobrecarga e torna mais fácil começar."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Comportamento"],
+        contexto: "ESCOLA",
+        situacao: "O professor explica um conteúdo importante e você não entende nada. Fica com vergonha de perguntar com medo de parecer o único que não entendeu.",
+        opcoes: [
+          {
+            texto: "Vou levantar a mão e perguntar. Provavelmente outros também têm a mesma dúvida.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Pedir ajuda é uma habilidade, não uma fraqueza. Evitar a dúvida por vergonha cria lacunas no aprendizado que se acumulam com o tempo e aumentam a dificuldade nas provas."
+          },
+          {
+            texto: "Não pergunto nada. Depois vejo no YouTube ou copio do colega na prova.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Pedir ajuda é uma habilidade, não uma fraqueza. Evitar a dúvida por vergonha cria lacunas no aprendizado que se acumulam com o tempo e aumentam a dificuldade nas provas."
+          },
+          {
+            texto: "Anoto a dúvida pra pesquisar depois, mas acabo esquecendo e indo sem entender.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Pedir ajuda é uma habilidade, não uma fraqueza. Evitar a dúvida por vergonha cria lacunas no aprendizado que se acumulam com o tempo e aumentam a dificuldade nas provas."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Comportamento", "Pensamento"],
+        contexto: "SOCIAL",
+        situacao: "Seus amigos estão usando substâncias numa festa e te oferecem. Você não quer, mas sente uma pressão enorme pra aceitar pra não parecer \"certinho\".",
+        opcoes: [
+          {
+            texto: "Recuso com tranquilidade. Sei o que quero e não preciso me justificar pra ninguém.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Ceder à pressão do grupo para evitar julgamento é uma armadilha comportamental comum na adolescência. Ter clareza sobre seus próprios valores e conseguir expressá-los é uma forma importante de autocuidado."
+          },
+          {
+            texto: "Aceito pra não criar clima. No fundo não queria, mas não sei dizer não.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Ceder à pressão do grupo para evitar julgamento é uma armadilha comportamental comum na adolescência. Ter clareza sobre seus próprios valores e conseguir expressá-los é uma forma importante de autocuidado."
+          },
+          {
+            texto: "Recuso, mas fico me sentindo excluído e ansioso pelo resto da noite.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Ceder à pressão do grupo para evitar julgamento é uma armadilha comportamental comum na adolescência. Ter clareza sobre seus próprios valores e conseguir expressá-los é uma forma importante de autocuidado."
+          }
+        ]
+      },
+
+      // ─── SAÚDE FÍSICA ───
+
+      {
+        indicadores: ["Saúde física", "Comportamento"],
+        contexto: "CASA",
+        situacao: "Você ficou no celular até tarde, dormiu pouco e acordou cansado no dia seguinte.",
+        opcoes: [
+          {
+            texto: "Hoje vai ser difícil, mas vou tentar organizar meu dia e dormir melhor à noite.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "O sono impacta diretamente sua energia, atenção e regulação emocional. Pequenas mudanças de rotina — como definir um horário para largar o celular — podem melhorar significativamente seu dia seguinte."
+          },
+          {
+            texto: "Já estraguei o dia mesmo, então tanto faz manter assim.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "O sono impacta diretamente sua energia, atenção e regulação emocional. Pequenas mudanças de rotina — como definir um horário para largar o celular — podem melhorar significativamente seu dia seguinte."
+          },
+          {
+            texto: "Vou tentar compensar com café e seguir o dia.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "O sono impacta diretamente sua energia, atenção e regulação emocional. Pequenas mudanças de rotina — como definir um horário para largar o celular — podem melhorar significativamente seu dia seguinte."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Saúde física"],
+        contexto: "ESCOLA",
+        situacao: "Você está há dias sem comer direito — pula o café da manhã, almoça qualquer coisa rápida e chega em casa sem energia. Mas acha que não tem tempo pra se preocupar com isso agora.",
+        opcoes: [
+          {
+            texto: "Alimentação afeta meu rendimento. Vou me organizar pra ter pelo menos refeições básicas no meu dia.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "Negligenciar a alimentação em períodos de estresse é comum, mas contraproducente. O cérebro precisa de nutrição para se concentrar e memorizar. Adiar o autocuidado \"para depois\" costuma piorar o desempenho que você estava tentando proteger."
+          },
+          {
+            texto: "Não tenho tempo pra isso. Quando terminar essa fase corrida, me cuido.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "Negligenciar a alimentação em períodos de estresse é comum, mas contraproducente. O cérebro precisa de nutrição para se concentrar e memorizar. Adiar o autocuidado \"para depois\" costuma piorar o desempenho que você estava tentando proteger."
+          },
+          {
+            texto: "Levo uma barrinha de cereal pra escola. Não é ideal, mas é algo.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "Negligenciar a alimentação em períodos de estresse é comum, mas contraproducente. O cérebro precisa de nutrição para se concentrar e memorizar. Adiar o autocuidado \"para depois\" costuma piorar o desempenho que você estava tentando proteger."
+          }
+        ]
+      },
+
+      {
+        indicadores: ["Saúde física", "Emoção"],
+        contexto: "CASA",
+        situacao: "Você percebe que faz semanas que não sai de casa além da escola, não pratica nenhuma atividade física e está se sentindo pesado e sem motivação.",
+        opcoes: [
+          {
+            texto: "Vou começar com algo pequeno — uma caminhada curta ou 15 minutos de alongamento.",
+            tipo: "adaptativo",
+            pontos: 2,
+            feedback: "A inatividade física prolongada está diretamente ligada à queda de humor e motivação. O movimento não precisa ser intenso — pequenas doses de atividade já têm efeito real no bem-estar emocional."
+          },
+          {
+            texto: "Não tenho disposição pra nada mesmo. Fico deitado que é melhor.",
+            tipo: "desadaptativo",
+            pontos: 0,
+            feedback: "A inatividade física prolongada está diretamente ligada à queda de humor e motivação. O movimento não precisa ser intenso — pequenas doses de atividade já têm efeito real no bem-estar emocional."
+          },
+          {
+            texto: "Fico culpado por não me exercitar, mas não faço nada a respeito.",
+            tipo: "parcial",
+            pontos: 1,
+            feedback: "A inatividade física prolongada está diretamente ligada à queda de humor e motivação. O movimento não precisa ser intenso — pequenas doses de atividade já têm efeito real no bem-estar emocional."
+          }
+        ]
+      }
+
+    ];
+
+    const state = {
+      indiceAtual: 0,
+      respondeu: false,
+      pontuacoes: {
+        "Pensamento": 0,
+        "Emoção": 0,
+        "Comportamento": 0,
+        "Saúde física": 0
+      }
+    };
+
+    const el = {
+      startScreen: document.getElementById("startScreen"),
+      gameScreen: document.getElementById("gameScreen"),
+      startBtn: document.getElementById("startBtn"),
+      progressText: document.getElementById("progressText"),
+      progressFill: document.getElementById("progressFill"),
+      activePills: document.getElementById("activePills"),
+      card: document.getElementById("card"),
+      cardTag: document.getElementById("cardTag"),
+      tagDot: document.getElementById("tagDot"),
+      situationText: document.getElementById("situationText"),
+      contextText: document.getElementById("contextText"),
+      microfeedback: document.getElementById("microfeedback"),
+      feedbackBadge: document.getElementById("feedbackBadge"),
+      feedbackDot: document.getElementById("feedbackDot"),
+      feedbackTypeLabel: document.getElementById("feedbackTypeLabel"),
+      feedbackText: document.getElementById("feedbackText"),
+      options: document.getElementById("options"),
+      nextBtn: document.getElementById("nextBtn"),
+      summary: document.getElementById("summary"),
+      scoreList: document.getElementById("scoreList"),
+      restartBtn: document.getElementById("restartBtn")
+    };
+
+    function embaralhar(lista) {
+      const copia = [...lista];
+      for (let i = copia.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = copia[i];
+        copia[i] = copia[j];
+        copia[j] = temp;
+      }
+      return copia;
+    }
+
+    function mostrarTelaJogo() {
+      el.startScreen.classList.add("is-hidden");
+      el.gameScreen.classList.remove("is-hidden");
+    }
+
+    function obterEstiloIndicador(indicador) {
+      return INDICATOR_STYLE[indicador] || INDICATOR_STYLE["Pensamento"];
+    }
+
+    function renderPills(indicadores) {
+      el.activePills.innerHTML = "";
+      indicadores.forEach((nome) => {
+        const style = obterEstiloIndicador(nome);
+        const pill = document.createElement("span");
+        pill.className = "indicator-pill";
+        pill.style.background = style.pillBg;
+        pill.style.color = style.pillText;
+
+        const dot = document.createElement("span");
+        dot.className = "dot";
+        dot.style.background = style.color;
+
+        const text = document.createElement("span");
+        text.textContent = nome;
+
+        pill.appendChild(dot);
+        pill.appendChild(text);
+        el.activePills.appendChild(pill);
+      });
+    }
+
+    function resetFeedback() {
+      el.microfeedback.classList.remove("show");
+      el.microfeedback.style.background = "transparent";
+      el.microfeedback.style.borderLeftColor = "transparent";
+      el.feedbackBadge.style.background = "transparent";
+      el.feedbackBadge.style.color = "inherit";
+      el.feedbackDot.style.background = "transparent";
+      el.feedbackTypeLabel.textContent = "";
+      el.feedbackText.textContent = "";
+      el.nextBtn.classList.remove("show");
+    }
+
+    function renderCarta() {
+      const total = cartas.length;
+      const atual = state.indiceAtual;
+
+      if (atual >= total) {
+        renderResumoFinal();
+        return;
+      }
+
+      state.respondeu = false;
+      el.summary.hidden = true;
+      el.nextBtn.classList.remove("show");
+      el.options.hidden = false;
+      el.card.hidden = false;
+
+      const carta = cartas[atual];
+      const principal = carta.indicadores[0];
+      const principalStyle = obterEstiloIndicador(principal);
+
+      el.progressText.textContent = "Carta " + (atual + 1) + " de " + total;
+      el.progressFill.style.width = ((atual + 1) / total) * 100 + "%";
+
+      renderPills(carta.indicadores);
+
+      el.card.style.borderColor = principalStyle.color;
+      el.cardTag.style.color = principalStyle.pillText;
+      el.cardTag.style.background = principalStyle.pillBg;
+      el.tagDot.style.background = principalStyle.color;
+      el.situationText.textContent = carta.situacao;
+      el.contextText.textContent = carta.contexto || "";
+
+      resetFeedback();
+      renderOpcoes(carta);
+    }
+
+    function renderOpcoes(carta) {
+      el.options.innerHTML = "";
+
+      const opcoes = embaralhar(carta.opcoes);
+      opcoes.forEach((opcao) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn";
+        btn.textContent = opcao.texto;
+        btn.addEventListener("click", () => selecionarOpcao(carta, opcao, btn));
+        el.options.appendChild(btn);
+      });
+    }
+
+    function aplicarPontuacao(carta, pontos) {
+      carta.indicadores.forEach((indicador) => {
+        if (Object.prototype.hasOwnProperty.call(state.pontuacoes, indicador)) {
+          state.pontuacoes[indicador] += pontos;
+        }
+      });
+    }
+
+    function selecionarOpcao(carta, opcaoEscolhida, botaoEscolhido) {
+      if (state.respondeu) {
+        return;
+      }
+
+      state.respondeu = true;
+      aplicarPontuacao(carta, opcaoEscolhida.pontos);
+
+      const style = RESPONSE_STYLE[opcaoEscolhida.tipo];
+      botaoEscolhido.style.background = style.bg;
+      botaoEscolhido.style.borderColor = style.border;
+      botaoEscolhido.style.color = style.text;
+
+      const botoes = el.options.querySelectorAll(".option-btn");
+      botoes.forEach((btn) => {
+        if (btn !== botaoEscolhido) {
+          btn.classList.add("is-dimmed");
+        }
+      });
+
+      el.microfeedback.style.background = style.bg;
+      el.microfeedback.style.borderLeftColor = style.border;
+      el.microfeedback.style.color = style.text;
+
+      el.feedbackBadge.style.background = "rgba(255, 255, 255, 0.55)";
+      el.feedbackBadge.style.color = style.text;
+      el.feedbackDot.style.background = style.border;
+      el.feedbackTypeLabel.textContent = style.label + " +" + opcaoEscolhida.pontos;
+      el.feedbackText.textContent = opcaoEscolhida.feedback;
+      el.microfeedback.classList.add("show");
+
+      window.setTimeout(() => {
+        el.nextBtn.classList.add("show");
+      }, 300);
+    }
+
+    function renderResumoFinal() {
+      el.card.hidden = true;
+      el.options.hidden = true;
+      el.nextBtn.classList.remove("show");
+      el.summary.hidden = false;
+
+      el.progressText.textContent = "Carta 12 de 12";
+      el.progressFill.style.width = "100%";
+      el.activePills.innerHTML = "";
+
+      el.scoreList.innerHTML = "";
+      Object.keys(state.pontuacoes).forEach((indicador) => {
+        const item = document.createElement("li");
+        item.className = "score-item";
+
+        const left = document.createElement("span");
+        left.textContent = indicador;
+
+        const right = document.createElement("strong");
+        right.textContent = state.pontuacoes[indicador] + " pts";
+
+        item.appendChild(left);
+        item.appendChild(right);
+        el.scoreList.appendChild(item);
+      });
+    }
+
+    function reiniciarJogo() {
+      state.indiceAtual = 0;
+      state.respondeu = false;
+      state.pontuacoes = {
+        "Pensamento": 0,
+        "Emoção": 0,
+        "Comportamento": 0,
+        "Saúde física": 0
+      };
+      renderCarta();
+    }
+
+    el.startBtn.addEventListener("click", () => {
+      mostrarTelaJogo();
+      window.setTimeout(() => {
+        renderCarta();
+      }, 80);
+    });
+
+    el.nextBtn.addEventListener("click", () => {
+      if (!state.respondeu) {
+        return;
+      }
+      state.indiceAtual += 1;
+      renderCarta();
+    });
+
+    el.restartBtn.addEventListener("click", reiniciarJogo);
+  </script>
+</body>
+</html>
