@@ -934,7 +934,7 @@
             <h3 class="result-section-title result-section-refletir">Para refletir</h3>
             <div id="reflectionList" class="reflection-list"></div>
 
-            <p class="result-ethics">Este jogo tem fins psicoeducativos e não substitui avaliação ou acompanhamento de um profissional de saúde mental.</p>
+            <p class="result-ethics">Este jogo é psicoeducativo. Ele não substitui avaliação ou acompanhamento com um profissional de saúde mental.</p>
 
             <div class="summary-actions">
               <button id="restartBtn" class="btn btn-restart" type="button">Jogar novamente</button>
@@ -966,19 +966,19 @@
         bg: "#E1F5EE",
         border: "#1D9E75",
         text: "#085041",
-        label: "Resposta adaptativa"
+        label: "Resposta saudável"
       },
       parcial: {
         bg: "#FAEEDA",
         border: "#BA7517",
         text: "#412402",
-        label: "Resposta parcialmente adaptativa"
+        label: "Resposta em desenvolvimento"
       },
       desadaptativo: {
         bg: "#FCEBEB",
         border: "#A32D2D",
         text: "#501313",
-        label: "Resposta desadaptativa"
+        label: "Resposta que pode melhorar"
       }
     };
 
@@ -986,30 +986,30 @@
       "Pensamento": {
         emoji: "💡",
         color: "#E8A020",
-        forte: "Seu pensamento demonstrou flexibilidade e autoconsciência nas situações apresentadas.",
-        desenvolver: "Seus padrões de pensamento em situações difíceis têm espaço para crescer. Questionar pensamentos automáticos é um ótimo começo.",
-        dica: "Quando perceber um pensamento negativo automático, tente perguntar a si mesmo: isso é um fato ou uma interpretação?"
+        forte: "Você mostrou flexibilidade para pensar e se reposicionar nas situações mais difíceis.",
+        desenvolver: "Em alguns momentos, seus pensamentos ficaram duros com você. Você pode treinar uma visão mais justa e realista.",
+        dica: "Quando vier um pensamento negativo automático, pergunte: isso é fato ou é uma interpretação minha?"
       },
       "Saúde física": {
         emoji: "☀️",
         color: "#E8A020",
-        forte: "Você mostrou atenção ao seu corpo e à sua rotina de autocuidado.",
-        desenvolver: "Cuidar do corpo é cuidar da mente. Sono, alimentação e movimento impactam diretamente seu bem-estar emocional.",
-        dica: "Movimentar o corpo por 15 minutos por dia já tem impacto real no seu humor, energia e capacidade de concentração."
+        forte: "Você cuidou bem do seu corpo e da sua rotina no dia a dia.",
+        desenvolver: "Seu corpo também precisa de atenção quando a rotina aperta. Sono, alimentação e movimento mudam seu bem-estar.",
+        dica: "Mover o corpo por 15 minutos por dia já ajuda no humor, na energia e na concentração."
       },
       "Emoção": {
         emoji: "🩷",
         color: "#D4537E",
-        forte: "Você demonstrou boa capacidade de reconhecer e lidar com suas emoções.",
-        desenvolver: "Lidar com emoções intensas é um processo. Nomear o que você sente já é um primeiro passo importante.",
-        dica: "Nomear o que você sente — mesmo que só mentalmente — já ajuda a processar a emoção de forma mais saudável."
+        forte: "Você reconheceu melhor suas emoções e lidou com elas de forma mais equilibrada.",
+        desenvolver: "Algumas emoções ainda ficam muito intensas para você. Com treino, elas podem perder força.",
+        dica: "Dê nome ao que você está sentindo. Esse passo simples já ajuda a organizar a emoção."
       },
       "Comportamento": {
         emoji: "🧠",
         color: "#C9A0D0",
-        forte: "Suas escolhas comportamentais refletiram cuidado e responsabilidade consigo mesmo.",
-        desenvolver: "Seu comportamento em situações de pressão tem espaço para crescer. Pequenas mudanças de rotina já fazem diferença.",
-        dica: "Dividir tarefas grandes em etapas pequenas reduz a sensação de sobrecarga e facilita o primeiro passo."
+        forte: "Suas atitudes mostraram cuidado com você e com o que é importante na sua rotina.",
+        desenvolver: "Sob pressão, algumas escolhas podem ser mais impulsivas. Pequenas mudanças já fazem diferença.",
+        dica: "Quebre tarefas grandes em etapas pequenas. Assim fica mais fácil começar sem se sobrecarregar."
       }
     };
 
@@ -1022,30 +1022,30 @@
 
     const cartas = [
 
-      // ─── PENSAMENTO ───
+      // Pensamento
 
       {
         indicadores: ["Pensamento"],
         contexto: "ESCOLA",
-        situacao: "Você tirou uma nota baixa numa prova que estudou bastante. Ao ver o resultado, seu primeiro pensamento foi: \"Sou burro mesmo, não adianta tentar.\"",
+        situacao: "Você tirou nota baixa em uma prova para a qual estudou bastante. Na hora, pensou: \"Sou burro, não adianta tentar.\"",
         opcoes: [
           {
             texto: "Essa nota não define minha capacidade. Vou entender onde errei e me preparar melhor.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Pensamentos como \"sou burro\" são chamados de distorções cognitivas. Eles parecem verdadeiros, mas são generalizações que ignoram seu esforço e sua capacidade real de aprender."
+            feedback: "Quando você pensa \"sou burro\", isso parece verdade no calor do momento. Esse tipo de distorção cognitiva é uma avaliação injusta. Foque no erro que pode corrigir e no que já aprendeu."
           },
           {
             texto: "Realmente não tenho jeito pra isso. Vou desistir de tentar nessa matéria.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Pensamentos como \"sou burro\" são chamados de distorções cognitivas. Eles parecem verdadeiros, mas são generalizações que ignoram seu esforço e sua capacidade real de aprender."
+            feedback: "Quando você pensa \"sou burro\", isso parece verdade no calor do momento. Esse tipo de distorção cognitiva é uma avaliação injusta. Foque no erro que pode corrigir e no que já aprendeu."
           },
           {
-            texto: "Tudo bem, foi só essa prova. Mas continuei achando que não sou bom o suficiente.",
+            texto: "Foi só essa prova. Mesmo assim, continuo pensando que não sou bom o suficiente.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Pensamentos como \"sou burro\" são chamados de distorções cognitivas. Eles parecem verdadeiros, mas são generalizações que ignoram seu esforço e sua capacidade real de aprender."
+            feedback: "Quando você pensa \"sou burro\", isso parece verdade no calor do momento. Esse tipo de distorção cognitiva é uma avaliação injusta. Foque no erro que pode corrigir e no que já aprendeu."
           }
         ]
       },
@@ -1053,25 +1053,25 @@
       {
         indicadores: ["Pensamento"],
         contexto: "ESCOLA",
-        situacao: "Você está tentando estudar, mas fica se comparando com um colega que parece entender tudo com facilidade. Você começa a pensar que nunca vai chegar ao nível dele.",
+        situacao: "Você está estudando, mas se compara com um colega que parece entender tudo rápido. Aí vem o pensamento: \"Nunca vou chegar no nível dele.\"",
         opcoes: [
           {
             texto: "Cada um tem seu ritmo. O que importa é o meu progresso, não o dele.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Comparações constantes alimentam a insegurança. Na maioria das vezes, você só vê o resultado do outro — não o esforço, as dúvidas e os erros que ele também tem."
+            feedback: "Se comparar o tempo todo aumenta a insegurança. Você vê o resultado do outro, mas não vê o processo. Olhar para seu próprio avanço é mais justo e mais útil."
           },
           {
             texto: "Não adianta, ele sempre vai ser melhor do que eu. Nem vou me esforçar.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Comparações constantes alimentam a insegurança. Na maioria das vezes, você só vê o resultado do outro — não o esforço, as dúvidas e os erros que ele também tem."
+            feedback: "Se comparar o tempo todo aumenta a insegurança. Você vê o resultado do outro, mas não vê o processo. Olhar para seu próprio avanço é mais justo e mais útil."
           },
           {
             texto: "Vou tentar estudar mais, mas no fundo acho que ele é simplesmente mais inteligente.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Comparações constantes alimentam a insegurança. Na maioria das vezes, você só vê o resultado do outro — não o esforço, as dúvidas e os erros que ele também tem."
+            feedback: "Se comparar o tempo todo aumenta a insegurança. Você vê o resultado do outro, mas não vê o processo. Olhar para seu próprio avanço é mais justo e mais útil."
           }
         ]
       },
@@ -1079,53 +1079,53 @@
       {
         indicadores: ["Pensamento"],
         contexto: "ESCOLA",
-        situacao: "Você vai apresentar um trabalho para a turma e, antes de começar, pensa: \"Vou travar, todo mundo vai rir de mim e achar que sou ridículo.\"",
+        situacao: "Você vai apresentar um trabalho. Antes de começar, pensa: \"Vou travar e todo mundo vai rir de mim.\"",
         opcoes: [
           {
             texto: "Posso ficar nervoso, mas me preparei. Vou focar no conteúdo, não no julgamento dos outros.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Antecipar catástrofes é um padrão de pensamento muito comum em situações de exposição. O problema é que essa \"previsão\" aumenta a ansiedade e muitas vezes não se confirma na realidade."
+            feedback: "Imaginar o pior antes de começar é comum. Esse pensamento aumenta sua ansiedade e atrapalha seu desempenho. Respire e volte para o que você preparou."
           },
           {
             texto: "Melhor fingir que estou doente e não apresentar. Não aguento essa situação.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Antecipar catástrofes é um padrão de pensamento muito comum em situações de exposição. O problema é que essa \"previsão\" aumenta a ansiedade e muitas vezes não se confirma na realidade."
+            feedback: "Imaginar o pior antes de começar é comum. Esse pensamento aumenta sua ansiedade e atrapalha seu desempenho. Respire e volte para o que você preparou."
           },
           {
             texto: "Vou apresentar, mas já estou convicto de que vai ser um fracasso.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Antecipar catástrofes é um padrão de pensamento muito comum em situações de exposição. O problema é que essa \"previsão\" aumenta a ansiedade e muitas vezes não se confirma na realidade."
+            feedback: "Imaginar o pior antes de começar é comum. Esse pensamento aumenta sua ansiedade e atrapalha seu desempenho. Respire e volte para o que você preparou."
           }
         ]
       },
 
-      // ─── EMOÇÃO ───
+      // Emoção
 
       {
         indicadores: ["Emoção"],
         contexto: "CASA",
-        situacao: "Na véspera de uma prova importante, você sente uma ansiedade tão grande que não consegue dormir nem se concentrar. Seu coração acelera só de pensar no dia seguinte.",
+        situacao: "Na véspera de uma prova importante, a ansiedade bate forte. Você não consegue dormir direito e o coração acelera ao pensar no dia seguinte.",
         opcoes: [
           {
             texto: "Estou ansioso porque me importo. Vou respirar fundo, revisar o que consigo e descansar.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "A ansiedade antes de provas é normal e até útil em doses pequenas. O problema é quando ela paralisa. Reconhecer o que sente e agir com calma é muito mais eficaz do que fugir ou se exaurir."
+            feedback: "Sentir ansiedade antes de prova é comum. Em excesso, ela paralisa. Quando você reconhece o que sente e age com calma, seu corpo e sua mente respondem melhor."
           },
           {
             texto: "Se estou assim, é porque não estou preparado. Vou estudar a noite toda sem parar.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "A ansiedade antes de provas é normal e até útil em doses pequenas. O problema é quando ela paralisa. Reconhecer o que sente e agir com calma é muito mais eficaz do que fugir ou se exaurir."
+            feedback: "Sentir ansiedade antes de prova é comum. Em excesso, ela paralisa. Quando você reconhece o que sente e age com calma, seu corpo e sua mente respondem melhor."
           },
           {
             texto: "Vou tentar me distrair com o celular pra não pensar nisso.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "A ansiedade antes de provas é normal e até útil em doses pequenas. O problema é quando ela paralisa. Reconhecer o que sente e agir com calma é muito mais eficaz do que fugir ou se exaurir."
+            feedback: "Sentir ansiedade antes de prova é comum. Em excesso, ela paralisa. Quando você reconhece o que sente e age com calma, seu corpo e sua mente respondem melhor."
           }
         ]
       },
@@ -1133,25 +1133,25 @@
       {
         indicadores: ["Emoção"],
         contexto: "SOCIAL",
-        situacao: "Você brigou com seu melhor amigo e ficou remoendo a situação o dia inteiro. Mesmo tentando fazer outras coisas, o pensamento volta sem parar.",
+        situacao: "Você brigou com seu melhor amigo e ficou remoendo isso o dia todo. Mesmo tentando se distrair, o pensamento volta sem parar.",
         opcoes: [
           {
             texto: "Estou magoado e tudo bem sentir isso. Quando me acalmar, vou conversar com ele.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Ruminar sobre conflitos mantém a emoção negativa ativa por mais tempo. Nomear o que você sente e buscar uma resolução no momento certo ajuda a processar a situação de forma saudável."
+            feedback: "Ficar remoendo um conflito prolonga a dor. Quando você nomeia o que sente e escolhe um bom momento para conversar, a situação fica mais leve."
           },
           {
             texto: "Não vou falar nada. Se ele quiser resolver, que venha falar comigo.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Ruminar sobre conflitos mantém a emoção negativa ativa por mais tempo. Nomear o que você sente e buscar uma resolução no momento certo ajuda a processar a situação de forma saudável."
+            feedback: "Ficar remoendo um conflito prolonga a dor. Quando você nomeia o que sente e escolhe um bom momento para conversar, a situação fica mais leve."
           },
           {
             texto: "Vou fingir que estou bem, mas por dentro continuo remoendo.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Ruminar sobre conflitos mantém a emoção negativa ativa por mais tempo. Nomear o que você sente e buscar uma resolução no momento certo ajuda a processar a situação de forma saudável."
+            feedback: "Ficar remoendo um conflito prolonga a dor. Quando você nomeia o que sente e escolhe um bom momento para conversar, a situação fica mais leve."
           }
         ]
       },
@@ -1159,53 +1159,53 @@
       {
         indicadores: ["Emoção", "Comportamento"],
         contexto: "SOCIAL",
-        situacao: "Você está numa festa com amigos, mas se sente estranho, fora do lugar e com vontade de ir embora. Parece que todo mundo está se divertindo menos você.",
+        situacao: "Você está em uma festa com amigos, mas se sente deslocado e com vontade de ir embora. Parece que só você não está se divertindo.",
         opcoes: [
           {
             texto: "Estou me sentindo assim agora, mas não precisa ser sempre assim. Vou tentar me envolver um pouco antes de decidir ir embora.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Evitar sistematicamente essas situações reforça a crença de que você não consegue lidar com elas — e o isolamento aumenta com o tempo."
+            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Se você evita tudo, essa sensação cresce. Dar pequenos passos ajuda seu cérebro a ganhar confiança."
           },
           {
             texto: "Saio sem falar nada, sumo e fico no celular em casa. Não sou feito pra essas coisas.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Evitar sistematicamente essas situações reforça a crença de que você não consegue lidar com elas — e o isolamento aumenta com o tempo."
+            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Se você evita tudo, essa sensação cresce. Dar pequenos passos ajuda seu cérebro a ganhar confiança."
           },
           {
             texto: "Fico mais um pouco, mas no celular o tempo todo pra não ter que interagir.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Evitar sistematicamente essas situações reforça a crença de que você não consegue lidar com elas — e o isolamento aumenta com o tempo."
+            feedback: "Sentir-se deslocado em ambientes sociais é mais comum do que parece. Se você evita tudo, essa sensação cresce. Dar pequenos passos ajuda seu cérebro a ganhar confiança."
           }
         ]
       },
 
-      // ─── COMPORTAMENTO ───
+      // Comportamento
 
       {
         indicadores: ["Comportamento"],
         contexto: "CASA",
-        situacao: "Você tem uma lista enorme de tarefas para o fim de semana, mas fica procrastinando assistindo séries. Chega domingo à noite e quase nada foi feito.",
+        situacao: "Você tem muitas tarefas para o fim de semana, mas passa o tempo vendo séries. Quando chega domingo à noite, quase nada foi feito.",
         opcoes: [
           {
             texto: "Vou dividir as tarefas em pequenos blocos e começar pela mais fácil agora.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "A procrastinação costuma ser uma resposta à ansiedade, não à preguiça. Dividir tarefas em partes menores reduz a sensação de sobrecarga e torna mais fácil começar."
+            feedback: "Procrastinar costuma ser uma resposta à ansiedade, não falta de caráter. Quando você quebra a tarefa em partes pequenas, começar fica muito mais possível."
           },
           {
             texto: "Deixa pra semana que vem. Já era esse fim de semana mesmo.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "A procrastinação costuma ser uma resposta à ansiedade, não à preguiça. Dividir tarefas em partes menores reduz a sensação de sobrecarga e torna mais fácil começar."
+            feedback: "Procrastinar costuma ser uma resposta à ansiedade, não falta de caráter. Quando você quebra a tarefa em partes pequenas, começar fica muito mais possível."
           },
           {
             texto: "Faço tudo correndo agora de madrugada, mal feito mas entregue.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "A procrastinação costuma ser uma resposta à ansiedade, não à preguiça. Dividir tarefas em partes menores reduz a sensação de sobrecarga e torna mais fácil começar."
+            feedback: "Procrastinar costuma ser uma resposta à ansiedade, não falta de caráter. Quando você quebra a tarefa em partes pequenas, começar fica muito mais possível."
           }
         ]
       },
@@ -1213,25 +1213,25 @@
       {
         indicadores: ["Comportamento"],
         contexto: "ESCOLA",
-        situacao: "O professor explica um conteúdo importante e você não entende nada. Fica com vergonha de perguntar com medo de parecer o único que não entendeu.",
+        situacao: "O professor explica um conteúdo importante e você não entende. Dá vergonha de perguntar e parecer que só você ficou com dúvida.",
         opcoes: [
           {
             texto: "Vou levantar a mão e perguntar. Provavelmente outros também têm a mesma dúvida.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Pedir ajuda é uma habilidade, não uma fraqueza. Evitar a dúvida por vergonha cria lacunas no aprendizado que se acumulam com o tempo e aumentam a dificuldade nas provas."
+            feedback: "Pedir ajuda é uma habilidade. Quando você guarda a dúvida por vergonha, o conteúdo vai acumulando e tudo fica mais difícil depois."
           },
           {
             texto: "Não pergunto nada. Depois vejo no YouTube ou copio do colega na prova.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Pedir ajuda é uma habilidade, não uma fraqueza. Evitar a dúvida por vergonha cria lacunas no aprendizado que se acumulam com o tempo e aumentam a dificuldade nas provas."
+            feedback: "Pedir ajuda é uma habilidade. Quando você guarda a dúvida por vergonha, o conteúdo vai acumulando e tudo fica mais difícil depois."
           },
           {
             texto: "Anoto a dúvida pra pesquisar depois, mas acabo esquecendo e indo sem entender.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Pedir ajuda é uma habilidade, não uma fraqueza. Evitar a dúvida por vergonha cria lacunas no aprendizado que se acumulam com o tempo e aumentam a dificuldade nas provas."
+            feedback: "Pedir ajuda é uma habilidade. Quando você guarda a dúvida por vergonha, o conteúdo vai acumulando e tudo fica mais difícil depois."
           }
         ]
       },
@@ -1245,24 +1245,24 @@
             texto: "Recuso com tranquilidade. Sei o que quero e não preciso me justificar pra ninguém.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Ceder à pressão do grupo para evitar julgamento é uma armadilha comportamental comum na adolescência. Ter clareza sobre seus próprios valores e conseguir expressá-los é uma forma importante de autocuidado."
+            feedback: "Ceder à pressão para ser aceito é comum, mas pode te afastar do que você quer. Dizer não com clareza é autocuidado e fortalece sua autonomia."
           },
           {
             texto: "Aceito pra não criar clima. No fundo não queria, mas não sei dizer não.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Ceder à pressão do grupo para evitar julgamento é uma armadilha comportamental comum na adolescência. Ter clareza sobre seus próprios valores e conseguir expressá-los é uma forma importante de autocuidado."
+            feedback: "Ceder à pressão para ser aceito é comum, mas pode te afastar do que você quer. Dizer não com clareza é autocuidado e fortalece sua autonomia."
           },
           {
             texto: "Recuso, mas fico me sentindo excluído e ansioso pelo resto da noite.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Ceder à pressão do grupo para evitar julgamento é uma armadilha comportamental comum na adolescência. Ter clareza sobre seus próprios valores e conseguir expressá-los é uma forma importante de autocuidado."
+            feedback: "Ceder à pressão para ser aceito é comum, mas pode te afastar do que você quer. Dizer não com clareza é autocuidado e fortalece sua autonomia."
           }
         ]
       },
 
-      // ─── SAÚDE FÍSICA ───
+      // Saúde física
 
       {
         indicadores: ["Saúde física", "Comportamento"],
@@ -1273,19 +1273,19 @@
             texto: "Hoje vai ser difícil, mas vou tentar organizar meu dia e dormir melhor à noite.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "O sono impacta diretamente sua energia, atenção e regulação emocional. Pequenas mudanças de rotina — como definir um horário para largar o celular — podem melhorar significativamente seu dia seguinte."
+            feedback: "Seu sono afeta energia, atenção e humor. Pequenos ajustes na noite, como definir hora para sair do celular, melhoram muito o dia seguinte."
           },
           {
             texto: "Já estraguei o dia mesmo, então tanto faz manter assim.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "O sono impacta diretamente sua energia, atenção e regulação emocional. Pequenas mudanças de rotina — como definir um horário para largar o celular — podem melhorar significativamente seu dia seguinte."
+            feedback: "Seu sono afeta energia, atenção e humor. Pequenos ajustes na noite, como definir hora para sair do celular, melhoram muito o dia seguinte."
           },
           {
             texto: "Vou tentar compensar com café e seguir o dia.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "O sono impacta diretamente sua energia, atenção e regulação emocional. Pequenas mudanças de rotina — como definir um horário para largar o celular — podem melhorar significativamente seu dia seguinte."
+            feedback: "Seu sono afeta energia, atenção e humor. Pequenos ajustes na noite, como definir hora para sair do celular, melhoram muito o dia seguinte."
           }
         ]
       },
@@ -1293,25 +1293,25 @@
       {
         indicadores: ["Saúde física"],
         contexto: "CASA",
-        situacao: "Você está há dias sem comer direito — pula o café da manhã, almoça qualquer coisa rápida e chega em casa sem energia. Mas acha que não tem tempo pra se preocupar com isso agora.",
+        situacao: "Há dias você não come direito. Pula o café da manhã, almoça correndo e chega em casa sem energia. Mesmo assim, acha que não tem tempo para cuidar disso.",
         opcoes: [
           {
             texto: "Alimentação afeta meu rendimento. Vou me organizar pra ter pelo menos refeições básicas no meu dia.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "Negligenciar a alimentação em períodos de estresse é comum, mas contraproducente. O cérebro precisa de nutrição para se concentrar e memorizar. Adiar o autocuidado \"para depois\" costuma piorar o desempenho que você estava tentando proteger."
+            feedback: "Em fases de estresse, é comum largar a alimentação de lado. Seu cérebro precisa de energia para aprender e focar. Cuidar disso agora te ajuda a render melhor."
           },
           {
             texto: "Não tenho tempo pra isso. Quando terminar essa fase corrida, me cuido.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "Negligenciar a alimentação em períodos de estresse é comum, mas contraproducente. O cérebro precisa de nutrição para se concentrar e memorizar. Adiar o autocuidado \"para depois\" costuma piorar o desempenho que você estava tentando proteger."
+            feedback: "Em fases de estresse, é comum largar a alimentação de lado. Seu cérebro precisa de energia para aprender e focar. Cuidar disso agora te ajuda a render melhor."
           },
           {
             texto: "Levo uma barrinha de cereal pra escola. Não é ideal, mas é algo.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "Negligenciar a alimentação em períodos de estresse é comum, mas contraproducente. O cérebro precisa de nutrição para se concentrar e memorizar. Adiar o autocuidado \"para depois\" costuma piorar o desempenho que você estava tentando proteger."
+            feedback: "Em fases de estresse, é comum largar a alimentação de lado. Seu cérebro precisa de energia para aprender e focar. Cuidar disso agora te ajuda a render melhor."
           }
         ]
       },
@@ -1322,22 +1322,22 @@
         situacao: "Você percebe que faz semanas que não sai de casa além da escola, não pratica nenhuma atividade física e está se sentindo pesado e sem motivação.",
         opcoes: [
           {
-            texto: "Vou começar com algo pequeno — uma caminhada curta ou 15 minutos de alongamento.",
+            texto: "Vou começar com algo pequeno, como uma caminhada curta ou 15 minutos de alongamento.",
             tipo: "adaptativo",
             pontos: 2,
-            feedback: "A inatividade física prolongada está diretamente ligada à queda de humor e motivação. O movimento não precisa ser intenso — pequenas doses de atividade já têm efeito real no bem-estar emocional."
+            feedback: "Ficar muito tempo sem se mover pode derrubar seu humor e sua motivação. Você não precisa começar com intensidade. Poucos minutos já ajudam de verdade."
           },
           {
             texto: "Não tenho disposição pra nada mesmo. Fico deitado que é melhor.",
             tipo: "desadaptativo",
             pontos: 0,
-            feedback: "A inatividade física prolongada está diretamente ligada à queda de humor e motivação. O movimento não precisa ser intenso — pequenas doses de atividade já têm efeito real no bem-estar emocional."
+            feedback: "Ficar muito tempo sem se mover pode derrubar seu humor e sua motivação. Você não precisa começar com intensidade. Poucos minutos já ajudam de verdade."
           },
           {
             texto: "Fico culpado por não me exercitar, mas não faço nada a respeito.",
             tipo: "parcial",
             pontos: 1,
-            feedback: "A inatividade física prolongada está diretamente ligada à queda de humor e motivação. O movimento não precisa ser intenso — pequenas doses de atividade já têm efeito real no bem-estar emocional."
+            feedback: "Ficar muito tempo sem se mover pode derrubar seu humor e sua motivação. Você não precisa começar com intensidade. Poucos minutos já ajudam de verdade."
           }
         ]
       }
@@ -1410,12 +1410,12 @@
 
     function textoSaudacao(classificacao) {
       if (classificacao === "alta") {
-        return "Você demonstrou padrões bastante saudáveis ao longo dessa jornada. Suas escolhas refletem autoconsciência e cuidado consigo mesmo. Continue assim!";
+        return "Você fez escolhas muito saudáveis ao longo da jornada. Isso mostra autoconsciência e cuidado com você. Continue nesse caminho.";
       }
       if (classificacao === "media") {
-        return "Você tem pontos fortes importantes — e também áreas com espaço para crescer. Isso é completamente normal e faz parte do processo de autoconhecimento.";
+        return "Você tem pontos fortes importantes e também áreas para desenvolver. Isso é normal e faz parte do autoconhecimento.";
       }
-      return "Essa jornada revelou algumas áreas que merecem sua atenção. Reconhecer isso já é um primeiro passo importante. Lembre-se: pequenas mudanças fazem grande diferença.";
+      return "Esta jornada mostrou áreas que pedem mais atenção. Reconhecer isso já é um grande passo. Com pequenas mudanças, você pode avançar bastante.";
     }
 
     function calcularResultados() {
@@ -1501,8 +1501,8 @@
           </div>
 
           <div class="about-content" data-content="sobre">
-            <p>O EQUILÍBRIO é uma ferramenta psicoeducativa que simula situações do cotidiano e oferece feedbacks sobre suas respostas. A proposta é demonstrar, na prática, que a saúde mental não depende de uma única decisão — mas de um conjunto de padrões ao longo do tempo.</p>
-            <p>O jogo é baseado nos princípios da Terapia Cognitivo-Comportamental (TCC). Não tem finalidade diagnóstica e não substitui avaliação clínica profissional.</p>
+            <p>O EQUILÍBRIO é uma ferramenta psicoeducativa. Você passa por situações do cotidiano e recebe feedback sobre suas escolhas. A ideia é mostrar que a saúde mental se constrói com pequenas decisões ao longo do tempo.</p>
+            <p>O jogo usa princípios da Terapia Cognitivo-Comportamental, a TCC. Ele não faz diagnóstico e não substitui avaliação clínica profissional.</p>
           </div>
 
           <div class="about-content" data-content="como" hidden>
@@ -1512,30 +1512,30 @@
             </div>
             <div class="about-item">
               <span class="about-item-title">🤔 Escolha sua resposta</span>
-              <div>Selecione entre 3 alternativas a que mais representa como você reagiria.</div>
+              <div>Escolha uma entre 3 alternativas, a que mais combina com como você reagiria.</div>
             </div>
             <div class="about-item">
               <span class="about-item-title">💬 Leia o feedback</span>
-              <div>Após cada escolha, você recebe um microfeedback psicoeducativo explicando o impacto daquela resposta.</div>
+              <div>Depois de cada escolha, você recebe um microfeedback explicando o impacto daquela resposta.</div>
             </div>
             <div class="about-item">
               <span class="about-item-title">📊 Veja seu panorama</span>
-              <div>Ao final das 12 cartas, descubra seus padrões em 4 áreas: Pensamento, Emoção, Comportamento e Saúde física.</div>
+              <div>No fim das 12 cartas, você vê seus padrões em 4 áreas: Pensamento, Emoção, Comportamento e Saúde física.</div>
             </div>
           </div>
 
           <div class="about-content" data-content="mecanicas" hidden>
             <div class="about-item">
               <span class="about-item-title">🔥 Sistema de Sequência</span>
-              <div>Respostas adaptativas consecutivas criam uma sequência. Respostas parcialmente adaptativas mantêm a sequência, mas não a aumentam. Respostas desadaptativas interrompem tudo. Chegue a 3, 5 ou 7 seguidas para desbloquear animações especiais!</div>
+              <div>Respostas saudáveis seguidas aumentam sua sequência. Respostas parcialmente saudáveis mantêm a sequência quando ela já chegou a 3. Respostas que podem melhorar interrompem a sequência. Chegue a 3, 5 ou 7 para liberar animações especiais.</div>
             </div>
             <div class="about-item">
               <span class="about-item-title">🧠 4 Indicadores</span>
-              <div>Cada carta afeta um ou dois indicadores — Pensamento, Emoção, Comportamento ou Saúde física. A borda colorida da carta indica qual área está em foco. Ao final, você verá seu desempenho em cada uma delas separadamente.</div>
+              <div>Cada carta afeta um ou dois indicadores: Pensamento, Emoção, Comportamento ou Saúde física. A borda colorida da carta mostra qual área está em foco. No fim, você vê seu desempenho em cada uma separadamente.</div>
             </div>
             <div class="about-item">
               <span class="about-item-title">💡 Microfeedback Psicoeducativo</span>
-              <div>Após cada resposta — seja ela qual for — o jogo apresenta uma explicação baseada na TCC sobre o impacto daquela escolha. O objetivo não é acertar ou errar, mas refletir sobre seus padrões.</div>
+              <div>Depois de cada resposta, o jogo traz uma explicação baseada na TCC sobre o impacto da sua escolha. O objetivo não é acertar ou errar. O foco é refletir sobre seus padrões.</div>
             </div>
           </div>
         </section>
@@ -1618,21 +1618,21 @@
 
     function textoSequenciaCombo(valor) {
       if (valor === 3) {
-        return "🔥 3 escolhas saudáveis seguidas. Você está construindo um padrão.";
+        return "🔥 3 escolhas saudáveis seguidas. Você começou uma boa sequência.";
       }
       if (valor === 4) {
-        return "🔥 4 seguidas! Padrões consistentes fazem a diferença.";
+        return "🔥 4 seguidas. Você está ganhando consistência.";
       }
       if (valor === 5) {
-        return "🔥 5 seguidas! Você está em chamas.";
+        return "🔥 5 seguidas. Seu ritmo está muito bom.";
       }
       if (valor === 6) {
-        return "🔥 6 seguidas! Continue assim.";
+        return "🔥 6 seguidas. Continue nesse caminho.";
       }
       if (valor === 7) {
-        return "🔥 7 seguidas! Imparável.";
+        return "🔥 7 seguidas. Você está imparável.";
       }
-      return "🔥 " + valor + " seguidas! Sequência incrível.";
+      return "🔥 " + valor + " seguidas. Sequência incrível.";
     }
 
     function limparComboVisual() {
@@ -1652,7 +1652,7 @@
     function exibirComboInterrompido() {
       limparComboVisual();
       el.comboBox.classList.add("combo-break");
-      el.comboText.textContent = "Perceba como padrões podem ser interrompidos. O importante é retomar. 🔥";
+      el.comboText.textContent = "Sua sequência foi interrompida. Tudo bem, você pode retomar agora. 🔥";
       window.setTimeout(() => {
         el.comboBox.classList.add("show");
       }, 200);
@@ -1927,11 +1927,11 @@
       el.feedbackBadge.style.background = "transparent";
       el.feedbackBadge.style.color = style.text;
       if (opcaoEscolhida.tipo === "adaptativo") {
-        el.feedbackTypeLabel.textContent = "✓ Resposta adaptativa (+2)";
+        el.feedbackTypeLabel.textContent = "✓ Resposta saudável (+2)";
       } else if (opcaoEscolhida.tipo === "parcial") {
-        el.feedbackTypeLabel.textContent = "~ Parcialmente adaptativa (+1)";
+        el.feedbackTypeLabel.textContent = "~ Resposta em desenvolvimento (+1)";
       } else {
-        el.feedbackTypeLabel.textContent = "✕ Resposta desadaptativa (0)";
+        el.feedbackTypeLabel.textContent = "✕ Resposta que pode melhorar (0)";
       }
       el.feedbackText.textContent = opcaoEscolhida.feedback;
       el.microfeedback.classList.add("show");
@@ -1966,7 +1966,7 @@
       el.journeyText.textContent = textoSaudacao(classificacaoGeral);
       if (comboMaximo >= 3) {
         el.comboSummaryText.hidden = false;
-        el.comboSummaryText.textContent = "🔥 Sua maior sequência foi de " + comboMaximo + " escolhas saudáveis consecutivas.";
+        el.comboSummaryText.textContent = "🔥 Sua maior sequência foi de " + comboMaximo + " escolhas saudáveis seguidas.";
       } else {
         el.comboSummaryText.hidden = true;
         el.comboSummaryText.textContent = "";
