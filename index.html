@@ -140,6 +140,173 @@
       transform: translateY(-1px);
     }
 
+    .btn-about {
+      width: 100%;
+      margin-top: 12px;
+      border-radius: 999px;
+      background: #F2CB65;
+      border: none;
+      color: #0A9EB7;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      line-height: 1;
+      transition: transform 200ms ease, filter 200ms ease, box-shadow 200ms ease;
+    }
+
+    .btn-about:hover {
+      transform: translateY(-1px);
+      filter: brightness(0.985);
+      box-shadow: 0 6px 14px rgba(201, 158, 56, 0.26);
+    }
+
+    .btn-about-icon {
+      width: 1.02rem;
+      height: 1.02rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.8px solid currentColor;
+      border-radius: 50%;
+      font-size: 0.62rem;
+      font-weight: 700;
+      line-height: 1;
+      transform: translateY(-0.2px);
+    }
+
+    .btn-about-label {
+      letter-spacing: 0.005em;
+    }
+
+    .about-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+      opacity: 0;
+      transition: opacity 250ms ease;
+    }
+
+    .about-modal-overlay.is-open {
+      opacity: 1;
+    }
+
+    .about-modal-overlay.is-closing {
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+
+    .about-modal-card {
+      background: #FFFFFF;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 1.5rem;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.15);
+      transform: scale(0.92);
+      opacity: 0;
+      transition: transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 250ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .about-modal-overlay.is-open .about-modal-card {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .about-modal-overlay.is-closing .about-modal-card {
+      transform: scale(0.92);
+      opacity: 0;
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
+
+    .about-modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0.5px solid #EEEEEE;
+      padding-bottom: 12px;
+    }
+
+    .about-modal-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1D9E75;
+    }
+
+    .about-modal-close {
+      background: transparent;
+      border: none;
+      font-size: 18px;
+      color: #999999;
+      cursor: pointer;
+      transition: color 200ms ease;
+    }
+
+    .about-modal-close:hover {
+      color: #333333;
+    }
+
+    .about-tabs {
+      display: flex;
+      gap: 8px;
+      margin: 16px 0;
+    }
+
+    .about-tab {
+      font-size: 13px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: none;
+      background: #F5F5F5;
+      color: #999999;
+      transition: all 200ms ease;
+    }
+
+    .about-tab.is-active {
+      background: #1D9E75;
+      color: #FFFFFF;
+    }
+
+    .about-content {
+      font-size: 14px;
+      color: #444444;
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    .about-content p {
+      margin: 0 0 10px;
+    }
+
+    .about-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-item {
+      padding: 10px 0;
+      border-bottom: 0.5px solid #EEEEEE;
+    }
+
+    .about-item:last-child {
+      border-bottom: none;
+    }
+
+    .about-item-title {
+      font-weight: 700;
+    }
+
     .screen-game {
       overflow-y: auto;
       padding: 1.5rem 1rem;
@@ -300,6 +467,44 @@
       line-height: 1.6;
     }
 
+    .combo-box {
+      margin-top: 0;
+      border-top: 0.5px solid #EEEEEE;
+      border-left: 3px solid transparent;
+      border-radius: 0 8px 8px 0;
+      padding: 0 14px;
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity 300ms ease, max-height 300ms ease, padding 300ms ease;
+    }
+
+    .combo-box.show {
+      opacity: 1;
+      max-height: 180px;
+      padding: 10px 14px;
+    }
+
+    .combo-box.combo-active {
+      background: #FFFBEA;
+      border-left-color: #E8A020;
+      color: #854F0B;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .combo-box.combo-break {
+      background: #F7F7F7;
+      border-left-color: #AAAAAA;
+      color: #666666;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .combo-text {
+      margin: 0;
+    }
+
     .options {
       display: flex;
       flex-direction: column;
@@ -389,15 +594,12 @@
     }
 
     .result-journey-title {
-      margin: 0 0 0.35rem;
+      margin: 0;
       text-align: center;
-      font-size: clamp(2rem, 4.8vw, 2.35rem);
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      line-height: 1.05;
+      font-size: 28px;
+      font-weight: 700;
       color: #1D9E75;
-      text-transform: uppercase;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+      text-transform: none;
     }
 
     .result-journey-text {
@@ -408,6 +610,13 @@
       text-align: center;
     }
 
+    .combo-summary {
+      font-size: 13px;
+      color: #999999;
+      text-align: center;
+      margin: 8px 0 1.1rem;
+    }
+
     .result-section-title {
       margin: 0 0 16px;
       font-size: 13px;
@@ -415,6 +624,18 @@
       letter-spacing: 1px;
       color: #999999;
       font-weight: 600;
+    }
+
+    .result-section-panorama {
+      margin-top: 2rem;
+    }
+
+    .result-section-padrao {
+      margin-top: 2rem;
+    }
+
+    .result-section-refletir {
+      margin-top: 2rem;
     }
 
     .panorama-list {
@@ -465,12 +686,14 @@
     .padrao-grid {
       display: flex;
       flex-direction: row;
+      align-items: stretch;
       gap: 12px;
       margin-bottom: 1.2rem;
     }
 
     .pattern-card {
       flex: 1;
+      height: 100%;
       border-radius: 14px;
       padding: 16px;
     }
@@ -525,9 +748,26 @@
       background: #F7F7F7;
       border-radius: 12px;
       padding: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
       font-size: 14px;
       color: #444444;
       line-height: 1.65;
+    }
+
+    .reflection-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1D9E75;
+      display: inline-block;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
+
+    .reflection-text {
+      flex: 1;
     }
 
     .result-ethics {
@@ -536,7 +776,7 @@
       color: #AAAAAA;
       line-height: 1.6;
       padding: 0 1rem;
-      margin: 0;
+      margin: 2rem 0 0;
     }
 
     .summary-actions {
@@ -611,6 +851,11 @@
           <span aria-hidden="true">▶</span>
           <span>Iniciar Avaliação</span>
         </button>
+
+        <button id="aboutBtn" class="btn btn-about" type="button">
+          <span class="btn-about-icon" aria-hidden="true">i</span>
+          <span class="btn-about-label">Sobre o Jogo</span>
+        </button>
       </div>
     </section>
 
@@ -652,6 +897,10 @@
               </div>
               <p id="feedbackText" class="microfeedback-text"></p>
             </div>
+
+            <div id="comboBox" class="combo-box" aria-live="polite">
+              <p id="comboText" class="combo-text"></p>
+            </div>
           </div>
         </article>
 
@@ -663,11 +912,12 @@
           <div class="summary-card">
             <h2 class="result-journey-title">Sua Jornada</h2>
             <p id="journeyText" class="result-journey-text"></p>
+            <p id="comboSummaryText" class="combo-summary" hidden></p>
 
-            <h3 class="result-section-title">Seu panorama</h3>
+            <h3 class="result-section-title result-section-panorama">Seu panorama</h3>
             <div id="panoramaList" class="panorama-list"></div>
 
-            <h3 class="result-section-title">Seu padrão predominante</h3>
+            <h3 class="result-section-title result-section-padrao">Seu padrão predominante</h3>
             <div class="padrao-grid">
               <article class="pattern-card pattern-strong">
                 <span class="pattern-badge">✦ Ponto forte</span>
@@ -681,7 +931,7 @@
               </article>
             </div>
 
-            <h3 class="result-section-title">Para refletir</h3>
+            <h3 class="result-section-title result-section-refletir">Para refletir</h3>
             <div id="reflectionList" class="reflection-list"></div>
 
             <p class="result-ethics">Este jogo tem fins psicoeducativos e não substitui avaliação ou acompanhamento de um profissional de saúde mental.</p>
@@ -765,6 +1015,11 @@
 
     const RESULT_ORDER = ["Pensamento", "Saúde física", "Emoção", "Comportamento"];
 
+    let comboAtual = 0;
+    let comboMaximo = 0;
+    let comboInterrompidoJaExibiu = false;
+    let aboutModalOverlay = null;
+
     const cartas = [
 
       // ─── PENSAMENTO ───
@@ -797,7 +1052,7 @@
 
       {
         indicadores: ["Pensamento"],
-        contexto: "CASA",
+        contexto: "ESCOLA",
         situacao: "Você está tentando estudar, mas fica se comparando com um colega que parece entender tudo com facilidade. Você começa a pensar que nunca vai chegar ao nível dele.",
         opcoes: [
           {
@@ -851,7 +1106,7 @@
 
       {
         indicadores: ["Emoção"],
-        contexto: "ESCOLA",
+        contexto: "CASA",
         situacao: "Na véspera de uma prova importante, você sente uma ansiedade tão grande que não consegue dormir nem se concentrar. Seu coração acelera só de pensar no dia seguinte.",
         opcoes: [
           {
@@ -877,7 +1132,7 @@
 
       {
         indicadores: ["Emoção"],
-        contexto: "CASA",
+        contexto: "SOCIAL",
         situacao: "Você brigou com seu melhor amigo e ficou remoendo a situação o dia inteiro. Mesmo tentando fazer outras coisas, o pensamento volta sem parar.",
         opcoes: [
           {
@@ -1037,7 +1292,7 @@
 
       {
         indicadores: ["Saúde física"],
-        contexto: "ESCOLA",
+        contexto: "CASA",
         situacao: "Você está há dias sem comer direito — pula o café da manhã, almoça qualquer coisa rápida e chega em casa sem energia. Mas acha que não tem tempo pra se preocupar com isso agora.",
         opcoes: [
           {
@@ -1104,6 +1359,7 @@
       startScreen: document.getElementById("startScreen"),
       gameScreen: document.getElementById("gameScreen"),
       startBtn: document.getElementById("startBtn"),
+      aboutBtn: document.getElementById("aboutBtn"),
       closeBtn: document.getElementById("closeBtn"),
       progressText: document.getElementById("progressText"),
       gameShell: document.querySelector(".game-shell"),
@@ -1116,10 +1372,13 @@
       feedbackBadge: document.getElementById("feedbackBadge"),
       feedbackTypeLabel: document.getElementById("feedbackTypeLabel"),
       feedbackText: document.getElementById("feedbackText"),
+      comboBox: document.getElementById("comboBox"),
+      comboText: document.getElementById("comboText"),
       options: document.getElementById("options"),
       nextBtn: document.getElementById("nextBtn"),
       summary: document.getElementById("summary"),
       journeyText: document.getElementById("journeyText"),
+      comboSummaryText: document.getElementById("comboSummaryText"),
       panoramaList: document.getElementById("panoramaList"),
       strongIndicatorName: document.getElementById("strongIndicatorName"),
       strongIndicatorText: document.getElementById("strongIndicatorText"),
@@ -1202,6 +1461,148 @@
       el.gameScreen.classList.remove("is-hidden");
     }
 
+    function definirAbaSobre(modal, nomeAba) {
+      if (!modal) {
+        return;
+      }
+
+      const tabs = modal.querySelectorAll(".about-tab");
+      const contents = modal.querySelectorAll(".about-content");
+
+      tabs.forEach((tab) => {
+        const isActive = tab.getAttribute("data-tab") === nomeAba;
+        tab.classList.toggle("is-active", isActive);
+      });
+
+      contents.forEach((content) => {
+        const isActive = content.getAttribute("data-content") === nomeAba;
+        content.hidden = !isActive;
+      });
+    }
+
+    function criarModalSobre() {
+      const overlay = document.createElement("div");
+      overlay.className = "about-modal-overlay";
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-label", "Sobre o Jogo");
+
+      overlay.innerHTML = `
+        <section class="about-modal-card">
+          <header class="about-modal-header">
+            <h2 class="about-modal-title">Sobre o Jogo</h2>
+            <button class="about-modal-close" type="button" aria-label="Fechar">✕</button>
+          </header>
+
+          <div class="about-tabs">
+            <button class="about-tab is-active" data-tab="sobre" type="button">Sobre</button>
+            <button class="about-tab" data-tab="como" type="button">Como Jogar</button>
+            <button class="about-tab" data-tab="mecanicas" type="button">Mecânicas</button>
+          </div>
+
+          <div class="about-content" data-content="sobre">
+            <p>O EQUILÍBRIO é uma ferramenta psicoeducativa que simula situações do cotidiano e oferece feedbacks sobre suas respostas. A proposta é demonstrar, na prática, que a saúde mental não depende de uma única decisão — mas de um conjunto de padrões ao longo do tempo.</p>
+            <p>O jogo é baseado nos princípios da Terapia Cognitivo-Comportamental (TCC). Não tem finalidade diagnóstica e não substitui avaliação clínica profissional.</p>
+          </div>
+
+          <div class="about-content" data-content="como" hidden>
+            <div class="about-item">
+              <span class="about-item-title">🃏 Receba uma carta</span>
+              <div>Uma situação do dia a dia de um estudante será apresentada.</div>
+            </div>
+            <div class="about-item">
+              <span class="about-item-title">🤔 Escolha sua resposta</span>
+              <div>Selecione entre 3 alternativas a que mais representa como você reagiria.</div>
+            </div>
+            <div class="about-item">
+              <span class="about-item-title">💬 Leia o feedback</span>
+              <div>Após cada escolha, você recebe um microfeedback psicoeducativo explicando o impacto daquela resposta.</div>
+            </div>
+            <div class="about-item">
+              <span class="about-item-title">📊 Veja seu panorama</span>
+              <div>Ao final das 12 cartas, descubra seus padrões em 4 áreas: Pensamento, Emoção, Comportamento e Saúde física.</div>
+            </div>
+          </div>
+
+          <div class="about-content" data-content="mecanicas" hidden>
+            <div class="about-item">
+              <span class="about-item-title">🔥 Sistema de Sequência</span>
+              <div>Respostas adaptativas consecutivas criam uma sequência. Respostas parcialmente adaptativas mantêm a sequência, mas não a aumentam. Respostas desadaptativas interrompem tudo. Chegue a 3, 5 ou 7 seguidas para desbloquear animações especiais!</div>
+            </div>
+            <div class="about-item">
+              <span class="about-item-title">🧠 4 Indicadores</span>
+              <div>Cada carta afeta um ou dois indicadores — Pensamento, Emoção, Comportamento ou Saúde física. A borda colorida da carta indica qual área está em foco. Ao final, você verá seu desempenho em cada uma delas separadamente.</div>
+            </div>
+            <div class="about-item">
+              <span class="about-item-title">💡 Microfeedback Psicoeducativo</span>
+              <div>Após cada resposta — seja ela qual for — o jogo apresenta uma explicação baseada na TCC sobre o impacto daquela escolha. O objetivo não é acertar ou errar, mas refletir sobre seus padrões.</div>
+            </div>
+          </div>
+        </section>
+      `;
+
+      return overlay;
+    }
+
+    function fecharModalSobre() {
+      if (!aboutModalOverlay || aboutModalOverlay.classList.contains("is-closing")) {
+        return;
+      }
+
+      const overlayAtual = aboutModalOverlay;
+      overlayAtual.classList.add("is-closing");
+
+      window.setTimeout(() => {
+        document.removeEventListener("keydown", overlayAtual._onEscape);
+        if (overlayAtual.parentNode) {
+          overlayAtual.parentNode.removeChild(overlayAtual);
+        }
+        if (aboutModalOverlay === overlayAtual) {
+          aboutModalOverlay = null;
+        }
+      }, 200);
+    }
+
+    function abrirModalSobre() {
+      if (aboutModalOverlay) {
+        definirAbaSobre(aboutModalOverlay, "sobre");
+        return;
+      }
+
+      const overlay = criarModalSobre();
+      document.body.appendChild(overlay);
+      aboutModalOverlay = overlay;
+
+      definirAbaSobre(overlay, "sobre");
+
+      const tabs = overlay.querySelectorAll(".about-tab");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          definirAbaSobre(overlay, tab.getAttribute("data-tab"));
+        });
+      });
+
+      const closeBtn = overlay.querySelector(".about-modal-close");
+      closeBtn.addEventListener("click", fecharModalSobre);
+
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) {
+          fecharModalSobre();
+        }
+      });
+
+      overlay._onEscape = (event) => {
+        if (event.key === "Escape") {
+          fecharModalSobre();
+        }
+      };
+      document.addEventListener("keydown", overlay._onEscape);
+
+      window.requestAnimationFrame(() => {
+        overlay.classList.add("is-open");
+      });
+    }
+
     function obterEstiloIndicador(indicador) {
       return INDICATOR_STYLE[indicador] || INDICATOR_STYLE["Pensamento"];
     }
@@ -1215,6 +1616,191 @@
       });
     }
 
+    function textoSequenciaCombo(valor) {
+      if (valor === 3) {
+        return "🔥 3 escolhas saudáveis seguidas. Você está construindo um padrão.";
+      }
+      if (valor === 4) {
+        return "🔥 4 seguidas! Padrões consistentes fazem a diferença.";
+      }
+      if (valor === 5) {
+        return "🔥 5 seguidas! Você está em chamas.";
+      }
+      if (valor === 6) {
+        return "🔥 6 seguidas! Continue assim.";
+      }
+      if (valor === 7) {
+        return "🔥 7 seguidas! Imparável.";
+      }
+      return "🔥 " + valor + " seguidas! Sequência incrível.";
+    }
+
+    function limparComboVisual() {
+      el.comboBox.classList.remove("show", "combo-active", "combo-break");
+      el.comboText.textContent = "";
+    }
+
+    function exibirComboSequencia(valor) {
+      limparComboVisual();
+      el.comboBox.classList.add("combo-active");
+      el.comboText.textContent = textoSequenciaCombo(valor);
+      window.setTimeout(() => {
+        el.comboBox.classList.add("show");
+      }, 200);
+    }
+
+    function exibirComboInterrompido() {
+      limparComboVisual();
+      el.comboBox.classList.add("combo-break");
+      el.comboText.textContent = "Perceba como padrões podem ser interrompidos. O importante é retomar. 🔥";
+      window.setTimeout(() => {
+        el.comboBox.classList.add("show");
+      }, 200);
+    }
+
+    function dispararAnimacaoCombo(valorCombo) {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+
+      const config = {
+        3: { emoji: 48, titulo: "Sequência iniciada!", subtitulo: "3 escolhas saudáveis seguidas" },
+        5: { emoji: 56, titulo: "Você está em chamas!", subtitulo: "5 escolhas saudáveis seguidas" },
+        7: { emoji: 64, titulo: "Imparável!", subtitulo: "7 escolhas saudáveis seguidas" }
+      }[valorCombo];
+
+      if (!config) {
+        return;
+      }
+
+      const flash = document.createElement("div");
+      flash.style.position = "fixed";
+      flash.style.top = "0";
+      flash.style.left = "0";
+      flash.style.width = "100%";
+      flash.style.height = "100%";
+      flash.style.pointerEvents = "none";
+      flash.style.zIndex = "9997";
+      flash.style.background = "radial-gradient(circle at center, rgba(232, 160, 32, 0.15) 0%, transparent 70%)";
+      flash.style.opacity = "0";
+      flash.style.transition = "opacity 200ms ease";
+      document.body.appendChild(flash);
+      requestAnimationFrame(() => {
+        flash.style.opacity = "1";
+      });
+      setTimeout(() => {
+        flash.style.opacity = "0";
+      }, 200);
+      setTimeout(() => {
+        flash.remove();
+      }, 800);
+
+      const overlay = document.createElement("div");
+      overlay.style.position = "fixed";
+      overlay.style.top = "50%";
+      overlay.style.left = "50%";
+      overlay.style.transform = "translate(-50%, -50%)";
+      overlay.style.display = "flex";
+      overlay.style.flexDirection = "column";
+      overlay.style.alignItems = "center";
+      overlay.style.gap = "8px";
+      overlay.style.pointerEvents = "none";
+      overlay.style.zIndex = "9999";
+      overlay.style.background = "rgba(255, 251, 234, 0.92)";
+      overlay.style.borderRadius = "20px";
+      overlay.style.padding = "24px 32px";
+      overlay.style.border = "1.5px solid rgba(232, 160, 32, 0.4)";
+      overlay.style.boxShadow = "0 8px 32px rgba(232, 160, 32, 0.2)";
+      overlay.style.opacity = "0";
+      overlay.style.transition = "opacity 200ms ease";
+
+      const emoji = document.createElement("div");
+      emoji.textContent = "🔥";
+      emoji.style.fontSize = config.emoji + "px";
+      emoji.style.lineHeight = "1";
+
+      const titulo = document.createElement("div");
+      titulo.textContent = config.titulo;
+      titulo.style.fontSize = "20px";
+      titulo.style.fontWeight = "700";
+      titulo.style.color = "#854F0B";
+      titulo.style.opacity = "0";
+
+      const subtitulo = document.createElement("div");
+      subtitulo.textContent = config.subtitulo;
+      subtitulo.style.fontSize = "14px";
+      subtitulo.style.fontWeight = "500";
+      subtitulo.style.color = "#E8A020";
+      subtitulo.style.opacity = "0";
+
+      overlay.appendChild(emoji);
+      overlay.appendChild(titulo);
+      overlay.appendChild(subtitulo);
+      document.body.appendChild(overlay);
+
+      requestAnimationFrame(() => {
+        overlay.style.opacity = "1";
+        emoji.animate(
+          [
+            { transform: "scale(0.3)" },
+            { transform: "scale(1.4)", offset: 0.6 },
+            { transform: "scale(1)" }
+          ],
+          { duration: 500, easing: "cubic-bezier(0.34, 1.56, 0.64, 1)", fill: "forwards" }
+        );
+
+        setTimeout(() => {
+          titulo.style.transition = "opacity 300ms ease";
+          titulo.style.opacity = "1";
+        }, 200);
+
+        setTimeout(() => {
+          subtitulo.style.transition = "opacity 300ms ease";
+          subtitulo.style.opacity = "1";
+        }, 350);
+      });
+
+      setTimeout(() => {
+        overlay.style.transition = "opacity 800ms ease";
+        overlay.style.opacity = "0";
+      }, 2200);
+
+      setTimeout(() => {
+        overlay.remove();
+      }, 3000);
+
+      const iconesParticula = ["🔥", "🔶", "✨"];
+      for (let i = 0; i < 12; i += 1) {
+        const p = document.createElement("div");
+        p.textContent = iconesParticula[Math.floor(Math.random() * iconesParticula.length)];
+        p.style.position = "fixed";
+        p.style.pointerEvents = "none";
+        p.style.zIndex = "9998";
+        p.style.left = (40 + Math.random() * 20) + "%";
+        p.style.top = (40 + Math.random() * 20) + "%";
+        p.style.fontSize = (16 + Math.random() * 16) + "px";
+        p.style.opacity = "1";
+        document.body.appendChild(p);
+
+        const tx = -120 + Math.random() * 240;
+        const ty = -200 + Math.random() * 220;
+        const rot = -30 + Math.random() * 60;
+        const dur = 1200 + Math.random() * 800;
+
+        p.animate(
+          [
+            { transform: "translate(0, 0) rotate(0deg)", opacity: 1 },
+            { transform: "translate(" + tx + "px, " + ty + "px) rotate(" + rot + "deg)", opacity: 0 }
+          ],
+          { duration: dur, easing: "ease-out", fill: "forwards" }
+        );
+
+        setTimeout(() => {
+          p.remove();
+        }, 3000);
+      }
+    }
+
     function resetFeedback() {
       el.microfeedback.classList.remove("show");
       el.microfeedback.style.background = "transparent";
@@ -1224,6 +1810,7 @@
       el.feedbackTypeLabel.textContent = "";
       el.feedbackText.textContent = "";
       el.nextBtn.classList.remove("show");
+      limparComboVisual();
     }
 
     function renderCarta() {
@@ -1299,6 +1886,28 @@
       state.respondeu = true;
       aplicarPontuacao(carta, opcaoEscolhida.pontos);
 
+      let mostrarComboInterrupcao = false;
+
+      if (opcaoEscolhida.tipo === "adaptativo") {
+        comboAtual += 1;
+        if (comboAtual > comboMaximo) {
+          comboMaximo = comboAtual;
+        }
+        if (comboAtual === 3 || comboAtual === 5 || comboAtual === 7) {
+          dispararAnimacaoCombo(comboAtual);
+        }
+      } else if (opcaoEscolhida.tipo === "parcial") {
+        if (comboAtual < 3) {
+          comboAtual = 0;
+        }
+      } else {
+        if (comboAtual >= 3 && comboInterrompidoJaExibiu === false) {
+          mostrarComboInterrupcao = true;
+          comboInterrompidoJaExibiu = true;
+        }
+        comboAtual = 0;
+      }
+
       const style = RESPONSE_STYLE[opcaoEscolhida.tipo];
       botaoEscolhido.style.background = style.bg;
       botaoEscolhido.style.borderColor = style.border;
@@ -1327,6 +1936,14 @@
       el.feedbackText.textContent = opcaoEscolhida.feedback;
       el.microfeedback.classList.add("show");
 
+      if (mostrarComboInterrupcao) {
+        exibirComboInterrompido();
+      } else if (comboAtual >= 3) {
+        exibirComboSequencia(comboAtual);
+      } else {
+        limparComboVisual();
+      }
+
       window.setTimeout(() => {
         el.nextBtn.classList.add("show");
       }, 400);
@@ -1347,6 +1964,13 @@
       renderIndicadores([]);
 
       el.journeyText.textContent = textoSaudacao(classificacaoGeral);
+      if (comboMaximo >= 3) {
+        el.comboSummaryText.hidden = false;
+        el.comboSummaryText.textContent = "🔥 Sua maior sequência foi de " + comboMaximo + " escolhas saudáveis consecutivas.";
+      } else {
+        el.comboSummaryText.hidden = true;
+        el.comboSummaryText.textContent = "";
+      }
 
       el.panoramaList.innerHTML = "";
       const fillsParaAnimar = [];
@@ -1411,7 +2035,17 @@
       menorDois.forEach((indicador) => {
         const item = document.createElement("div");
         item.className = "reflection-item";
-        item.textContent = "💡 " + RESULT_META[indicador].dica;
+
+        const dot = document.createElement("span");
+        dot.className = "reflection-dot";
+        dot.setAttribute("aria-hidden", "true");
+
+        const text = document.createElement("span");
+        text.className = "reflection-text";
+        text.textContent = RESULT_META[indicador].dica;
+
+        item.appendChild(dot);
+        item.appendChild(text);
         el.reflectionList.appendChild(item);
       });
 
@@ -1437,6 +2071,9 @@
         "Comportamento": 0,
         "Saúde física": 0
       };
+      comboAtual = 0;
+      comboMaximo = 0;
+      comboInterrompidoJaExibiu = false;
       if (!el.summary.hidden) {
         el.summary.classList.remove("show");
         el.gameShell.classList.add("fade-out");
@@ -1457,6 +2094,10 @@
       window.setTimeout(() => {
         renderCarta();
       }, 80);
+    });
+
+    el.aboutBtn.addEventListener("click", () => {
+      abrirModalSobre();
     });
 
     el.nextBtn.addEventListener("click", () => {
