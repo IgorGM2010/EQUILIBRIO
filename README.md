@@ -2,7 +2,6 @@
 ### Uma plataforma psicoeducativa sobre saúde mental
 
 ![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)
-![Licença](https://img.shields.io/badge/licença-MIT-green)
 
 ## 📋 Sobre o Projeto
 
