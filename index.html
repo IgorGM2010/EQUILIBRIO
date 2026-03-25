@@ -422,6 +422,48 @@
       color: #222222;
     }
 
+    .card.is-intro-card .situation-text {
+      text-align: justify;
+      font-size: 15.5px;
+      line-height: 1.65;
+      padding: 1rem 1.2rem 1.15rem;
+    }
+
+    .howto-lead {
+      margin: 0 0 10px;
+    }
+
+    .howto-response-list {
+      margin: 8px 0 12px;
+      padding-left: 1.15rem;
+      display: grid;
+      gap: 8px;
+    }
+
+    .howto-response-item {
+      line-height: 1.5;
+    }
+
+    .howto-type {
+      font-weight: 700;
+    }
+
+    .howto-type.adaptativo {
+      color: #1D9E75;
+    }
+
+    .howto-type.parcial {
+      color: #BA7517;
+    }
+
+    .howto-type.desadaptativo {
+      color: #A32D2D;
+    }
+
+    .howto-end {
+      margin: 0;
+    }
+
     .context-label {
       margin: 16px 0 0;
       text-align: center;
@@ -1347,6 +1389,7 @@
     const state = {
       indiceAtual: 0,
       respondeu: false,
+      mostrandoCartaComoJogar: false,
       pontuacoes: {
         "Pensamento": 0,
         "Emoção": 0,
@@ -1836,6 +1879,8 @@
       const principal = carta.indicadores[0];
       const principalStyle = obterEstiloIndicador(principal);
 
+      el.card.classList.remove("is-intro-card");
+      el.nextBtn.textContent = "Próxima carta →";
       el.progressText.textContent = "CARTA " + (atual + 1) + " DE " + total;
 
       renderIndicadores(carta.indicadores);
@@ -1846,6 +1891,39 @@
 
       resetFeedback();
       renderOpcoes(carta);
+    }
+
+    function renderCartaComoJogar() {
+      state.respondeu = false;
+      el.gameShell.classList.remove("fade-out");
+      el.summary.hidden = true;
+      el.summary.classList.remove("show");
+      el.nextBtn.classList.remove("show");
+      el.options.hidden = true;
+      el.card.hidden = false;
+      el.gameHeader.hidden = false;
+      el.indicatorGrid.hidden = false;
+
+      el.progressText.textContent = "ANTES DE COMEÇAR";
+      renderIndicadores([]);
+
+      el.card.classList.add("is-intro-card");
+      el.card.style.borderColor = "#1D9E75";
+      el.contextText.textContent = "COMO JOGAR";
+      el.situationText.innerHTML = `
+        <p class="howto-lead">Você vai passar por 12 cartas com situações do dia a dia. Em cada carta, escolha a resposta que mais parece com o que você faria e leia o microfeedback.</p>
+        <ul class="howto-response-list">
+          <li class="howto-response-item"><span class="howto-type adaptativo">Adaptativa (+2)</span>: indica uma escolha mais saudável para lidar com a situação.</li>
+          <li class="howto-response-item"><span class="howto-type parcial">Parcialmente desadaptativa (+1)</span>: tem algo positivo, mas ainda pode ser ajustada.</li>
+          <li class="howto-response-item"><span class="howto-type desadaptativo">Desadaptativa (0)</span>: tende a piorar o impacto emocional no momento.</li>
+        </ul>
+        <p class="howto-end">No final, você recebe seu panorama em Pensamento, Emoção, Comportamento e Saúde física.</p>
+      `;
+
+      resetFeedback();
+      el.options.innerHTML = "";
+      el.nextBtn.textContent = "Iniciar Jornada";
+      el.nextBtn.classList.add("show");
     }
 
     function transicaoParaResultados() {
@@ -2081,6 +2159,7 @@
     function reiniciarJogo() {
       state.indiceAtual = 0;
       state.respondeu = false;
+      state.mostrandoCartaComoJogar = true;
       state.pontuacoes = {
         "Pensamento": 0,
         "Emoção": 0,
@@ -2095,20 +2174,21 @@
         el.gameShell.classList.add("fade-out");
         window.setTimeout(() => {
           el.summary.hidden = true;
-          renderCarta();
+          renderCartaComoJogar();
           window.requestAnimationFrame(() => {
             el.gameShell.classList.remove("fade-out");
           });
         }, 300);
       } else {
-        renderCarta();
+        renderCartaComoJogar();
       }
     }
 
     el.startBtn.addEventListener("click", () => {
       mostrarTelaJogo();
+      state.mostrandoCartaComoJogar = true;
       window.setTimeout(() => {
-        renderCarta();
+        renderCartaComoJogar();
       }, 80);
     });
 
@@ -2117,6 +2197,13 @@
     });
 
     el.nextBtn.addEventListener("click", () => {
+      if (state.mostrandoCartaComoJogar) {
+        state.mostrandoCartaComoJogar = false;
+        state.indiceAtual = 0;
+        renderCarta();
+        return;
+      }
+
       if (!state.respondeu) {
         return;
       }
