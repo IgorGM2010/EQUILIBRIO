@@ -99,7 +99,7 @@ como referencial teórico:
 ## 👥 Equipe
 
 Alunos:
-- Igor Gomçalves Martins
+- Igor Gonçalves Martins
 - William José dos Santos
 
 Professores:
