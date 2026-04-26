@@ -67,8 +67,8 @@ baseadas nos padrões identificados.
 git clone https://github.com/IgorGM2010/EQUILIBRIO
 
 # Abra o arquivo no navegador
-cd jogo_equilibrio
-open index.html
+cd EQUILIBRIO
+start index.html
 ```
 
 ## 📊 Indicadores
