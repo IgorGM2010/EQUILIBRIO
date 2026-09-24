@@ -1,9 +1,9 @@
 # EQUILÍBRIO
-### Uma plataforma psicoeducativa sobre saúde mental
+### Repositório público do jogo EQUILÍBRIO
 
 ## 📋 Sobre o Projeto
 
-O EQUILÍBRIO é uma plataforma psicoeducativa web que
+O EQUILÍBRIO é uma ferramenta psicoeducativa web que
 promove a reflexão dos estudantes sobre como suas
 escolhas do dia a dia impactam sua saúde mental, com
 base em quatro indicadores: Pensamento, Emoção,
